@@ -1,6 +1,6 @@
 siwa
 
->
+> 根据swagger规格描述来解析成更易于js处理的对象。
 
 ## Install
 

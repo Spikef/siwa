@@ -74,6 +74,7 @@ Siwa.prototype.parse = function() {
 
             let operation = operations[method];
 
+            // 请求发送参数
             let parameters = [];
             operation.parameters = operation.parameters || operations.parameters || spec.parameters || [];
             if (utils.isType(operation.parameters, dataTypes.OBJECT)) {
@@ -143,8 +144,18 @@ Siwa.prototype.lookup = function(p) {
     }
 
     if (p.schema) {
+        if (utils.isType(p.schema.required, dataTypes.ARRAY)) {
+            p.schema.requireds = p.schema.required;
+            delete p.schema.required;
+        }
+
         p = Object.assign(p, p.schema);
         delete p.schema;
+    }
+
+    if (utils.isType(p.required, dataTypes.ARRAY)) {
+        p.requireds = p.required;
+        delete p.required;
     }
 
     if (p.items) {
@@ -169,7 +180,7 @@ Siwa.prototype.lookup = function(p) {
         p.type = 'object';
         p.children = [];
 
-        let required = p.required || [];
+        let requireds = utils.isType(p.requireds) || [];
         for (let name in p.properties) {
             if (!p.properties.hasOwnProperty(name)) continue;
 
@@ -178,7 +189,7 @@ Siwa.prototype.lookup = function(p) {
             }, p.properties[name]);
 
             item = this.lookup(item);
-            item.required = !!~required.indexOf(name);
+            item.required = !!~requireds.indexOf(name);
             if (item) p.children.push(item);
         }
 

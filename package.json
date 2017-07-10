@@ -1,6 +1,6 @@
 {
   "name": "siwa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "根据swagger规格描述来解析成更易于js处理的对象。",
   "main": "src/index.js",
   "repository": {
