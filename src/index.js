@@ -180,7 +180,7 @@ Siwa.prototype.lookup = function(p) {
         p.type = 'object';
         p.children = [];
 
-        let requireds = utils.isType(p.requireds) || [];
+        let requireds = p.requireds || [];
         for (let name in p.properties) {
             if (!p.properties.hasOwnProperty(name)) continue;
 
@@ -193,7 +193,7 @@ Siwa.prototype.lookup = function(p) {
             if (item) p.children.push(item);
         }
 
-        delete p.required;
+        delete p.requireds;
         delete p.properties;
     }
 
