@@ -1,0 +1,17 @@
+{
+  "name": "siwa",
+  "version": "1.0.0",
+  "description": "根据swagger规格描述来解析成更易于js处理的对象。",
+  "main": "src/index.js",
+  "repository": {
+    "git": "git@github.com:Spikef/siwa.git"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "author": "Spikef",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.8.4"
+  }
+}
